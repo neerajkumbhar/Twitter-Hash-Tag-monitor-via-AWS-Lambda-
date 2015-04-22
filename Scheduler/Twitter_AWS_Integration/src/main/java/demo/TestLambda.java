@@ -32,9 +32,7 @@ import java.util.List;
 @Component
 public class TestLambda {
 
-	// @Autowired
-	// private TweeterData tweeter_repo;
-
+	
 	/*
 	 * public static void main(String[] args){
 	 * 
