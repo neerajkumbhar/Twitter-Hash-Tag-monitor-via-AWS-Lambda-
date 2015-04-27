@@ -32,15 +32,17 @@ import java.util.List;
 @Component
 public class TestLambda {
 
-	
+	// @Autowired
+	// private TweeterData tweeter_repo;
+
 	/*
 	 * public static void main(String[] args){
 	 * 
 	 * System.out.println("Hello...");
 	 * 
 	 * BasicAWSCredentials awsCreds = new
-	 * BasicAWSCredentials("AKIAJXH7VU3TDJN5USGQ",
-	 * "O2p5VEatYW/F62krrbja3xP6VikPHsGSM8H1Hm4q");
+	 * BasicAWSCredentials("",
+	 * "");
 	 * 
 	 * // com.amazonaws.regions.Region region=new
 	 * com.amazonaws.regions.Region("us-west-2");
@@ -67,17 +69,17 @@ public class TestLambda {
 
 		ConfigurationBuilder cb = new ConfigurationBuilder();
 		cb.setDebugEnabled(true)
-				.setOAuthConsumerKey("vWOBHma73d743Eu5wj2uZXxaB")
+				.setOAuthConsumerKey("")
 				.setOAuthConsumerSecret(
-						"uVHHhdTYfNHesZ5D5qQMtPVwsuLywBAfMLvx6LSeJDI9pB72Bs")
+						"")
 				.setOAuthAccessToken(
-						"3139283250-CHtYscYZEnpub46KtocAhIswDDhRmtlxdx9PQjg")
+						"")
 				.setOAuthAccessTokenSecret(
-						"GkczaYPZTHu7Ps5QRIyfYi4qJqLCg3RghRXzbhTzu0s2m");
+						"");
 		TwitterFactory tf = new TwitterFactory(cb.build());
 		Twitter twitter = tf.getInstance();
 		
-		String hashtag="#sjsu";
+		String hashtag="#cmpe273sjsu";
 		int wantedTweets = 10;
 		long lastSearchID = Long.MAX_VALUE;
 		long firstQueryID;
