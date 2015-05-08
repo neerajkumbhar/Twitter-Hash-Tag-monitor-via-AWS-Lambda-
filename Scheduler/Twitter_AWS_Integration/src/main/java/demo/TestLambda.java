@@ -69,6 +69,7 @@ public class TestLambda {
 
 	}*/
 
+	//This method is scheduled to read the current events , when  it gets the events in mongo db it will fetch the data from by using Twitter 4j API
 	@Scheduled(fixedRate = 5000)
 	public void get_twitter_date() {
 		
@@ -89,11 +90,7 @@ public class TestLambda {
 			event_repo.save(ev);
 			*/
 				
-				
-				
-				
-
-				
+																
 				List all_event=event_repo.findAll();
 				
 				//List all_event_1=event_repo.getAllActiveEvent();
