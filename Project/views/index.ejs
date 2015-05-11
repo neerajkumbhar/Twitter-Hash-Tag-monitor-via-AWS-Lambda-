@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Twitter Dashboard</title>
+    <title><%=title%></title>
 
     <!-- Bootstrap Core CSS -->
     <link href="../components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -25,7 +25,50 @@
 
     <!-- Custom Fonts -->
     <link href="../components/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    
+    
+     <script type="text/javascript" src="https://www.google.com/jsapi"> </script>
+   
+    <script type="text/javascript">
+      google.load("visualization", "1", {packages:["corechart"]});
+      google.setOnLoadCallback(drawChart);
+      
+      google.load('visualization', '1', {'packages': ['geomap']});
+  	  google.setOnLoadCallback(drawMap);
+  
+  
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+           ['User','Count'],
+          ['@joe',  5],
+          ['@max',  10],
+          ['@Pankaj',15],   
+          ['@joe',  5],
+          ['@max',  10],
+          ['@Pankaj',15],
+          ['@joe',  5],
+          ['@max',  10],
+          ['@Pankaj',15]
+        ]);
 
+        var options = {
+        //  title: 'Tweet Count',
+          pointSize : 7,
+          hAxis: {title: 'Count',  titleTextStyle: {color: 'black',size:'60'}},
+        vAxis: {title: 'Users',  titleTextStyle: {color: 'black',size:'6'}},
+        };
+        
+        var pie_chart = new google.visualization.PieChart(document.getElementById('piechart_3d1'));
+        pie_chart.draw(data, options);
+        
+        
+        var bar_chart = new google.visualization.BarChart(document.getElementById('piechart_3d'));
+        bar_chart.draw(data, options);
+                
+      }
+     
+    </script>	    
+                                            
 </head>
 
 <body>
@@ -63,14 +106,18 @@
                 <div class="sidebar-nav navbar-collapse">
                     <ul class="nav" id="side-menu">
                        
-                        <li>
+                       <li>
                             <a href="/dashboard"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
                         </li>
                         <li>
-                            <a href="/charts"><i class="fa fa-bar-chart-o fa-fw"></i> Charts
-                           
-                            <!-- /.nav-second-level -->
-                        </li>                    
+                            <a href="/charts"><i class="fa fa-bar-chart-o fa-fw"></i> Charts</a>                         
+                        </li>   
+                        <li>
+                            <a href="/events"><i class="fa fa-bullhorn fa-fw"></i> Create Event</a>
+                        </li>  
+                         <li>
+                            <a href="/viewevents"><i class="fa fa-newspaper-o fa-fw"></i> My Events</a>
+                        </li>              
                     </ul>
                 </div>
                 <!-- /.sidebar-collapse -->
@@ -79,116 +126,121 @@
         </nav>
 
         <div id="page-wrapper">
-            <div class="row">
+        <br>
+           <!--  <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">Tweets</h1>
+                    <h5 class="page-header">Tweets</h5> 
                 </div>
-                <!-- /.col-lg-12 -->
-            </div>
-            <!-- /.row -->
+            </div> -->
+            
+             <div class="row">
+				
+				<div class="col-lg-6">
+					
+					<div class="panel panel-info">
+				
+				 		<div class="panel-heading">
+                            <i class="fa fa-user fa-fw"></i> Users
+                        </div>
+
+
+						<div class="panel-body">
+
+							<table class="table table-condensed">
+								<thead>
+									<tr class="info">
+										<th>User</th>
+										<th>Count</th>
+									</tr>
+								</thead>
+
+								<tbody>
+									<tr>
+										<td>@joe</td>
+										<td>35</td>
+									</tr>
+									<tr>
+										<td>@max</td>
+										<td>35</td>
+									</tr>
+									<tr>
+										<td>@punk</td>
+										<td>35</td>
+									</tr>
+								</tbody>
+							</table>
+
+
+						</div>
+					</div>	
+				
+				</div>
+			
+			
+			
+				<div class="col-lg-6">
+					<div class="panel panel-info">
+				
+				 		<div class="panel-heading">
+                            <i class="fa fa-twitter fa-fw"></i> Responsive Timeline
+                        </div>
+                        
+					
+						<div class="panel-body">
+						Tweet1
+						<hr>
+						Tweet2
+						<hr>
+						Tweet3
+						<hr>
+						</div>
+					</div>	
+				</div>
+				
+			</div>
+		 	
+				
+				
+
+				
+            
+            
             <div class="row">
-                <div class="col-lg-3 col-md-6">
-                    <div class="panel panel-primary">
-                        <div class="panel-heading">
-                             <div class="row">
-                                   <div class="col-xs-3">
-                                    <i class="fa fa-twitter fa-5x"></i>
-                                </div>
-                                   <div class="col-xs-9 text-right"> 
-                                   <div>New Tweets!</div>
-                                </div>
-                            </div> 
-                        </div>
-                        <a href="/tweets">
-                            <div class="panel-footer">
-                                <span class="pull-left">View Details</span>
-                                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-                                <div class="clearfix"></div>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6">
-                    <div class="panel panel-green">
-                        <div class="panel-heading">
-                            <div class="row">
-                                <div class="col-xs-3">
-                                    <i class="fa fa-comments fa-5x"></i>
-                                </div>
-                                <div class="col-xs-9 text-right">
-                                    
-                                    <div>New Comments!</div>
-                                </div>
-                            </div>
-                        </div>
-                        <a href="#">
-                            <div class="panel-footer">
-                                <span class="pull-left">View Details</span>
-                                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-                                <div class="clearfix"></div>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6">
-                    <div class="panel panel-yellow">
-                        <div class="panel-heading">
-                            <div class="row">
-                                <div class="col-xs-3">
-                                    <i class="fa fa-pencil fa-5x"></i>
-                                </div>
-                                <div class="col-xs-9 text-right">
-                                    
-                                    <div>New Mentions!</div>
-                                </div>
-                            </div>
-                        </div>
-                        <a href="#">
-                            <div class="panel-footer">
-                                <span class="pull-left">View Details</span>
-                                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-                                <div class="clearfix"></div>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-               
-               
-            </div>
-            <!-- /.row -->
-            <div class="row">
-                <div class="col-lg-8">
-                    <div class="panel panel-default">
+                 <div class="col-lg-8">
+                    <div class="panel panel-info">
                         
                         <div class="panel-heading">
-                            <i class="fa fa-clock-o fa-fw"></i> Responsive Timeline
+                            <i class="fa fa-area-chart fa-fw"></i> Charts
                         </div>
                        
-                        <div class="panel-body">
-                            <ul class="timeline">
-                                <li>
-                                    <div class="timeline-panel">
-                                        <div class="timeline-heading">
-                                            <h4 class="timeline-title">User</h4>
-                                    
-                                        </div>
-                                        <div class="timeline-body">
-                                            <p>Tweets will populate here</p>
-                                        </div>
-                                    </div>
-                                </li>
-                                                   
-                               
-                            </ul>
-                        </div>
-                        <!-- /.panel-body -->
-                    </div>
-
-                     
-                    <!-- /.panel -->
-                </div>
-
+	                        <div class="panel-body">
+								<div align="center">
+   		   								<div id="piechart_3d" style="width: 650px; height: 350px;" align="right"></div>
+   		   						</div>								                                                      
+                        	</div>	
+                    </div>                
+                </div> 
+                
+                
+                
                 <div class="col-lg-4">
+                    <div class="panel panel-info">
+                        
+                        <div class="panel-heading">
+                            <i class="fa fa-area-chart fa-fw"></i> Pie Chart
+                        </div>
+                       
+	                        <div class="panel-body">
+								<div align="left">
+   		   								<div id="piechart_3d1" style="width:390px; height: 350px;" align="left"></div>
+   		   						</div>								                                                      
+                        	</div>	
+                    </div>                
+                </div> 
+                
+                
+
+               <!--  <div class="col-lg-4">
                     <div class="panel panel-default">
                         <div class="panel-heading">
                             <i class="fa fa-bell fa-fw"></i> Notifications Panel
@@ -199,23 +251,23 @@
                             <div class="list-group">
                                 <a href="#" class="list-group-item">
                                     <i class="fa fa-comment fa-fw"></i> Hashtag Count
-                                   <!--  <span class="pull-right text-muted small"><em>4 minutes ago</em> -->
+                                    <span class="pull-right text-muted small"><em>4 minutes ago</em>
                                     </span>
                                 </a>
                                 <a href="#" class="list-group-item">
                                     <i class="fa fa-twitter fa-fw"></i> New Followers
-                                    <!-- <span class="pull-right text-muted small"><em>12 minutes ago</em> -->
+                                    <span class="pull-right text-muted small"><em>12 minutes ago</em>
                                     </span>
                                 </a>
                                 
                                 <a href="#" class="list-group-item">
                                     <i class="fa fa-tasks fa-fw"></i> Hashtag Visits
-                                    <!-- <span class="pull-right text-muted small"><em>43 minutes ago</em> -->
+                                    <span class="pull-right text-muted small"><em>43 minutes ago</em>
                                     </span>
                                 </a>
                                 <a href="#" class="list-group-item">
                                     <i class="fa fa-upload fa-fw"></i> Hashtag Followers
-                                    <!-- <span class="pull-right text-muted small"><em>11:32 AM</em> -->
+                                    <span class="pull-right text-muted small"><em>11:32 AM</em>
                                     </span>
                                 </a>
                                
@@ -223,7 +275,7 @@
                             </div>
                         </div>
                       </div>
-                </div>  
+               	 </div>  -->
                       
             </div>
             <!-- /.row -->

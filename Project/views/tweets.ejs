@@ -11,22 +11,7 @@
 
     <title>Twitter Dashboard</title>
 
-    <!-- Bootstrap Core CSS -->
-    <link href="../components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- Custom CSS -->
-    <link href="../dist/css/tw-admin.css" rel="stylesheet">
-
-    <!-- Morris Charts CSS -->
-     <link href="../components/morrisjs/morris.css" rel="stylesheet"> 
-
-    <!-- Custom Fonts -->
-    <link href="../components/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-    
-    
-    
-    
-</head>
+ </head>
 
 <body>
 
@@ -87,18 +72,28 @@
             <!-- /.row -->
             <div class="row">
                 <div class="col-lg-6">
-                    <div class="panel panel-default" style="width:900px;">
+                    <div class="panel panel-success" style="width:900px;">
                         
                          <div class="panel-heading">
-                            <h5>Tweet Activity</h5>
-                            
-                           
+                            <h5><b>Tweet Activity for #sjsu</b></h5>
                         </div>
                                             
                         <div class="panel-body" style="width:900px;">
-                        	<div align="left">
-   		   							 <div id="chart_div" style="width: 5000px; height: 400px;" align="right">  
-   		   							</div> 
+						
+                        <!--	<div align="left">
+								 <div id="chart_div" style="width: 5000px; height: 400px;" align="right">  
+						-->			<table class="table table-hover table-bordered">
+										<tr class="warning"><th>User Name</th><th>Tweet</th><th>GeoLocation</th></tr>
+										<% twitter_data.forEach(function(twitter) { %>
+									<!--	<tr><td><%= twitter.user_name %></td><td><%=  twitter.tweet_text %></td><td></td></tr>-->
+										<%if(twitter.UserName != null){%>
+										<tr><td><%= twitter.UserName %></td><td><%=  twitter.Tweet_Text %></td><td></td></tr>
+										<%}%>
+										<% }); %>
+									</table>
+						<!--		</div>
+							</div>
+   		   				-->			</div> 
    		  					 </div>	
                            <!--  <div id="morris-area-chart"></div> -->
                         </div>
@@ -112,23 +107,6 @@
     </div>
     <!-- /#wrapper -->
 
-    <!-- jQuery -->
-    <script src="../components/jquery/dist/jquery.min.js"></script>
-
-    <!-- Bootstrap Core JavaScript -->
-    <script src="../components/bootstrap/dist/js/bootstrap.min.js"></script>
-
-    <!-- Metis Menu Plugin JavaScript -->
-    <script src="../components/metisMenu/dist/metisMenu.min.js"></script>
-
-    <!-- Morris Charts JavaScript -->
-    <script src="../components/raphael/raphael-min.js"></script>
-    <script src="../components/morrisjs/morris.min.js"></script>
-    <script src="../js/morris-data.js"></script>
-
-    <!-- Custom Theme JavaScript -->
-    <script src="../dist/js/admin.js"></script>
-
-</body>
+ </body>
 
 </html>

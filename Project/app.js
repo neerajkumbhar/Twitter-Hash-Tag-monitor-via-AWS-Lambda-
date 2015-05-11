@@ -5,16 +5,6 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
-// Mongodb code start - Neha
-/* var mongo = require('mongodb');
-var monk = require('monk');
-var db = monk('mongodb://<dbuser>:<dbpassword>@ds061268.mongolab.com:61268/cmpe273'); */
-// Mongodb code end - Neha
-
-// Database
-/* var mongo = require('mongoskin');
-var db = mongo.db("mongodb://localhost:27017/test", {native_parser:true});
- */
 var routes = require('./routes/index');
 var users = require('./routes/users');
 
@@ -31,13 +21,6 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-
-// Make our db accessible to our router - Neha start
-/* app.use(function(req,res,next){
-    req.db = db;
-    next();
-}); */
-// end - Neha
 
 app.use('/', routes);
 app.use('/users', users);
