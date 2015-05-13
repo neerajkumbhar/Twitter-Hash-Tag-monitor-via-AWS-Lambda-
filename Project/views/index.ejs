@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title><%=title%></title>
+    <title>Twitter Dashboard</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="../components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -26,10 +26,12 @@
     <!-- Custom Fonts -->
     <link href="../components/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.0/jquery.min.js"></script>
     
      <script type="text/javascript" src="https://www.google.com/jsapi"> </script>
-   
-    <script type="text/javascript">
+     
+    
+     <script type="text/javascript">
       google.load("visualization", "1", {packages:["corechart"]});
       google.setOnLoadCallback(drawChart);
       
@@ -38,19 +40,19 @@
   
   
       function drawChart() {
-        var data = google.visualization.arrayToDataTable([
-           ['User','Count'],
-          ['@joe',  5],
-          ['@max',  10],
-          ['@Pankaj',15],   
-          ['@joe',  5],
-          ['@max',  10],
-          ['@Pankaj',15],
-          ['@joe',  5],
-          ['@max',  10],
-          ['@Pankaj',15]
-        ]);
+      
+      
+      //alert( "in drawchart");
+       var data = google.visualization.arrayToDataTable([
+           ['User','Count']
+         ['@user1',  0],
+          ['@user2',  0],
+          ['@user3',0]   
+   
+        ]); 
 
+	
+	
         var options = {
         //  title: 'Tweet Count',
           pointSize : 7,
@@ -60,14 +62,100 @@
         
         var pie_chart = new google.visualization.PieChart(document.getElementById('piechart_3d1'));
         pie_chart.draw(data, options);
+       
+        var bar_chart = new google.visualization.BarChart(document.getElementById('piechart_3d'));
+        bar_chart.draw(data, options);            
+      }
+    </script>	
+    	
+	<script type="text/javascript">
+	var auto_refresh = setInterval(
+	function ()
+	{
+	
+	        var chartarray = new Array();
+	        var tweetsum = 0;
+	        
+			var i = 0;
+			$.get( "/getstring?id=sjsu", function( data ) 
+			{
+			
+			      var data1 = new google.visualization.DataTable();
+  data1.addColumn('string', 'Users');
+  data1.addColumn('number', 'Count');
+  
+			
+				//$( ".result" ).html( string );
+				for(i=0; i<data.length;i++){
+				 var key='#'+data[i].name;
+					$(key).html(data[i].value);	
+					
+					data1.addRow(new Array(data[i].name,data[i].value));
+					tweetsum = parseInt(tweetsum) + parseInt(data[i].value);
+				}
+				//$("#pankaj_dighe").html(data._id);
+				
+				//alert( "Load was performed." + data[0].name);	
+				
+				// alert("tweet alert" + tweetsum);  
+				var message = "Total Count:" + tweetsum;
+				 //$("#totalcount").html("Total Count:" + tweetsum);
+				 
+				 var targetteext = $("#limittweet").html();
+				 var target = parseInt($("#limittweet").html());
+				 
+				 if(target==tweetsum){
+				 message=message+" Target Achieved...";
+				 }
+				 
+				  $("#totalcount").html(message);
+				  
+				//  alert("message " + message+ " *** " + targetteext);
+				  
+				  
+				 
+				 
+  
+       // data1.addRow(["Pankaj",20]);
+         //data1.addRow(["Neeraj",60]);
+        
+      //  var data = new google.visualization.DatTable();
+     //   data.addColumnn('Users',Count');
+     //   data.addRow(["neeraj",20]); 
+
+        		
+	 var options = {
+        //  title: 'Tweet Count',
+          pointSize : 7,
+          hAxis: {title: 'Count',  titleTextStyle: {color: 'black',size:'60'}},
+        vAxis: {title: 'Users',  titleTextStyle: {color: 'black',size:'6'}},
+        };
+        
+        var pie_chart = new google.visualization.PieChart(document.getElementById('piechart_3d1'));
+        pie_chart.draw(data1, options);
         
         
         var bar_chart = new google.visualization.BarChart(document.getElementById('piechart_3d'));
-        bar_chart.draw(data, options);
-                
-      }
-     
-    </script>	    
+        bar_chart.draw(data1, options);
+        
+        
+        
+				
+			});
+
+			//alert("Pankaj");		
+			
+	
+	
+        
+        
+		
+	}, 
+	5000); 
+	
+	</script>
+
+</script>	    
                                             
 </head>
 
@@ -78,7 +166,10 @@
         <!-- Navigation -->
         <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
             <div class="navbar-header">
-                <a class="navbar-brand" href="/">Twitter Dashboard</a>
+                <a class="navbar-brand" href="/">
+                <i class="fa fa-twitter fa-fw"></i>
+                Twitter Dashboard
+                </a>
             </div>
             <!-- /.navbar-header -->
 
@@ -109,9 +200,9 @@
                        <li>
                             <a href="/dashboard"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
                         </li>
-                        <li>
+                       <!--  <li>
                             <a href="/charts"><i class="fa fa-bar-chart-o fa-fw"></i> Charts</a>                         
-                        </li>   
+                        </li>    -->
                         <li>
                             <a href="/events"><i class="fa fa-bullhorn fa-fw"></i> Create Event</a>
                         </li>  
@@ -144,7 +235,7 @@
                         </div>
 
 
-						<div class="panel-body">
+						<div class="panel-body" id="usercount">
 
 							<table class="table table-condensed">
 								<thead>
@@ -152,27 +243,53 @@
 										<th>User</th>
 										<th>Count</th>
 									</tr>
+									
+									
+									
 								</thead>
 
 								<tbody>
-									<tr>
-										<td>@joe</td>
-										<td>35</td>
-									</tr>
-									<tr>
-										<td>@max</td>
-										<td>35</td>
-									</tr>
-									<tr>
-										<td>@punk</td>
-										<td>35</td>
-									</tr>
+									<% var tweet_limit = 0;%>
+									<% events_list.forEach(function(event){ %>
+										<%if(event._id == event_name){%>
+											<% event.users.forEach(function(user){ 
+												tweet_limit = event.target_twitts;
+											%>
+											<tr>									
+												<td> <%= user.name %> </td>
+												<td id= "<%= user.name %>" > <%= user.value %> </td>
+											</tr>
+											<% }); %>
+										<%}%>
+									<% }); %>
 								</tbody>
 							</table>
 
 
+  				 
+  				<div class="alert alert-warning" role="alert" id="totalcount">  
+  					Total count: 0
+  					
+  				
+  				</div>
+  				<div class="alert alert-success" role="alert"> Target to achieve: 
+  				
+  				<div id="limittweet">
+  				<%=tweet_limit%> 
+  				</div>
+  				</div>
+  				
+  
 						</div>
-					</div>	
+						
+						
+					
+                     
+                     
+					 
+			</div>	
+				
+				 
 				
 				</div>
 			
@@ -200,14 +317,9 @@
 			</div>
 		 	
 				
-				
-
-				
-            
-            
-            <div class="row">
+				  <div class="row">
                  <div class="col-lg-8">
-                    <div class="panel panel-info">
+                    <div class="panel panel-danger">
                         
                         <div class="panel-heading">
                             <i class="fa fa-area-chart fa-fw"></i> Charts
@@ -215,7 +327,8 @@
                        
 	                        <div class="panel-body">
 								<div align="center">
-   		   								<div id="piechart_3d" style="width: 650px; height: 350px;" align="right"></div>
+   		   								 <div id="piechart_3d" style="width: 650px; height: 350px;" align="right"></div> 
+   		   								<!-- <div  ng-app="" ng-controller="WaterfallController"> -->
    		   						</div>								                                                      
                         	</div>	
                     </div>                
@@ -224,7 +337,7 @@
                 
                 
                 <div class="col-lg-4">
-                    <div class="panel panel-info">
+                    <div class="panel panel-warning">
                         
                         <div class="panel-heading">
                             <i class="fa fa-area-chart fa-fw"></i> Pie Chart
@@ -238,45 +351,13 @@
                     </div>                
                 </div> 
                 
+
+				
+            
+            
+           
                 
-
-               <!--  <div class="col-lg-4">
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            <i class="fa fa-bell fa-fw"></i> Notifications Panel
-                        </div>
-
-
-                        <div class="panel-body">
-                            <div class="list-group">
-                                <a href="#" class="list-group-item">
-                                    <i class="fa fa-comment fa-fw"></i> Hashtag Count
-                                    <span class="pull-right text-muted small"><em>4 minutes ago</em>
-                                    </span>
-                                </a>
-                                <a href="#" class="list-group-item">
-                                    <i class="fa fa-twitter fa-fw"></i> New Followers
-                                    <span class="pull-right text-muted small"><em>12 minutes ago</em>
-                                    </span>
-                                </a>
-                                
-                                <a href="#" class="list-group-item">
-                                    <i class="fa fa-tasks fa-fw"></i> Hashtag Visits
-                                    <span class="pull-right text-muted small"><em>43 minutes ago</em>
-                                    </span>
-                                </a>
-                                <a href="#" class="list-group-item">
-                                    <i class="fa fa-upload fa-fw"></i> Hashtag Followers
-                                    <span class="pull-right text-muted small"><em>11:32 AM</em>
-                                    </span>
-                                </a>
-                               
-                                
-                            </div>
-                        </div>
-                      </div>
-               	 </div>  -->
-                      
+                                    
             </div>
             <!-- /.row -->
         </div>
