@@ -1,24 +1,3 @@
-<!-- <!DOCTYPE html>
-<html>
-  <head>
-    <title></title>
-    <title></title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-  </head>
-  <body>
-    <form action="/events" method="post">
-    <p>Welcome to Event page </p>
-	<input type="text" id="eventName" name="eventName">eventName
-	<input type="text" id="eventDesc" name="eventDesc">eventDesc
-	<input type="text" id="eventTag" name="eventTag">eventTag
-	<input type="text" id="eventUsers" name="eventUsers">Users
-	<input type="text" id="targetTweets" name="targetTweets">Target Tweets
-	<input type="text" id="tweetLimit" name="tweetLimit">Tweets limit
-	<input type="submit" id="submit">Submit
-	</form>
-  </body>
-</html>
- -->
 <!DOCTYPE html>
 <html lang="en">
 
@@ -56,6 +35,7 @@
         <!-- Navigation -->
         <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
             <div class="navbar-header">
+            <i class="fa fa-twitter fa-fw"></i>
                 <a class="navbar-brand" href="/">Twitter Dashboard</a>
             </div>
             <!-- /.navbar-header -->
@@ -87,9 +67,9 @@
                         <li>
                             <a href="/dashboard"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
                         </li>
-                        <li>
+                        <!-- <li>
                             <a href="/charts"><i class="fa fa-bar-chart-o fa-fw"></i> Charts</a>                         
-                        </li>   
+                        </li>   --> 
                         <li>
                             <a href="/events"><i class="fa fa-bullhorn fa-fw"></i> Create Event</a>
                         </li>  
@@ -130,41 +110,62 @@
 			    		<div class="control-group">
 							  <label class="control-label" for="textinput">Event Name</label>
 							  <div class="controls">
-							    <input class="form-control" type="text" id="xs" name="eventName" required> 
+							    <input class="form-control" type="text" placeholder="Enter event name" id="xs" name="eventName" required> 
 							  </div>
 						</div>
 							
 						<div class="control-group">
 							  <label class="control-label" for="textinput">Tag</label>
 							  <div class="controls">
-							     <input class="form-control" type="text" id="xs" name="eventTag" required>
+							     <input class="form-control" type="text" placeholder="Enter tag name" id="xs" name="eventTag" required>
 							  </div>
 						</div>
 		
 						<div class="control-group">
 							  <label class="control-label" for="textinput">Target</label>
 							  <div class="controls">
-							    <input class="form-control" type="text" id="xs" name="targetTweets" required> 
+							    <input class="form-control" type="text" id="xs"  placeholder="Enter target" name="targetTweets" required> 
 							  </div>
+						</div>
+						
+						<div class="control-group">
+								<label class="control-label" for="textinput">Start Date</label>
+								<div class="controls"> 
+								<input type="date" id="startdate" class="form-control"  name="startdate" required>
+								</div>
+						</div>
+					
+						<div class="control-group">
+								<label class="control-label" for="textinput">End Date</label>
+								<div class="controls"> 
+								<input type="date" id="enddate" class="form-control" name="enddate" required>
+								</div>
 						</div>
 						
 						<div class="control-group">
 							<label class="control-label" for="textinput">Users</label>
 							  <div class="controls">
-							     <input class="form-control" type="text" id="xs" name="eventUsers" required>
+							     <input class="form-control" type="text" id="xs" placeholder="Enter users" name="eventUsers" required>
+							  </div>
+						</div>
+						
+						<div class="control-group">
+							<label class="control-label" for="textinput">Enter email alias</label>
+							<div class="controls">
+							     <input class="form-control" type="text" id="emailAlias" placeholder="Enter email alias" name="emailAlias" required>
 							  </div>
 						</div>
 							
 						<div class="control-group">
 							  <label class="control-label" for="textinput">Scan Tweets</label>
 							  <div class="controls">
-							     <input class="form-control" type="text" id="xs" name="tweetLimit" required>
+							     <input class="form-control" type="text" id="xs" placeholder="Enter scan number" name="tweetLimit" required>
 							  </div>
 						</div>
 			
 							<br>
+							
 						 <input type="submit" id="submit" class="btn btn-info" name="Submit">
-						  
 				</div>	
 			</form>		   
      	 	</div>
