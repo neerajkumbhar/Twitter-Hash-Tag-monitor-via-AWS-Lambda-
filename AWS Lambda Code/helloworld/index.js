@@ -50,7 +50,13 @@ collection.update({"_id":event.TagID,"users.name":event.Users[i].name},{$set:{"u
 
 }*/
 
-
+var count=0;
+event.Users.forEach(function(item) {
+console.log(item.name+"Updating "+item.value+"Count is"+count);
+collection.update({"_id":event.TagID,"users.name":item.name},{$set:{"users.$.value":item.value}});
+//collection.update({"_id":event.TagID,"users.count.name":item.name},{$set:{"users.count.value":item.value}});
+count++;
+});
 
 
 
