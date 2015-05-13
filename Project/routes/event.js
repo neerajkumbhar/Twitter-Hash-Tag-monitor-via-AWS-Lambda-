@@ -16,6 +16,10 @@ exports.insertEvent=function(req,res){
 	var event = new Object();
 	event._id = req.body.eventTag;
 	event.name = req.body.eventName;
+	event.email = req.body.emailAlias;
+	event.startdate = req.body.startdate;
+	event.enddate = req.body.enddate;
+	event.flag = true;
 	//event.eventDesc = req.body.eventDesc;
 	var eventUsers = req.body.eventUsers;
 	var users = eventUsers.split(',');
@@ -52,6 +56,7 @@ exports.insertEvent=function(req,res){
 		var record = JSON.stringify(records);
 		console.log("Record added as "+record);
 		res.render('events');
+		//res.render('viewevents');
 	 // }
 	  });
 	  }
