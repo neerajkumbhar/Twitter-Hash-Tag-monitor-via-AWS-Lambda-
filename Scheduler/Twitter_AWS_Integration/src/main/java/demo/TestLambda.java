@@ -50,16 +50,15 @@ public class TestLambda {
 
     //public static void main(String[] args) {
 
-		/*System.out.println("Hello...");
+		
         BasicAWSCredentials awsCreds = new BasicAWSCredentials(
 				"",
 				"");
-		// com.amazonaws.regions.Region region=new
-		// com.amazonaws.regions.Region("us-west-2");
+		
 		AWSLambdaClient awsLambdaClient = new AWSLambdaClient(awsCreds);
 		awsLambdaClient.setEndpoint("lambda.us-west-2.amazonaws.com/");
 		InvokeRequest invokeRequest = new InvokeRequest();
-		//invokeRequest.setFunctionName("updateTwitterData");
+		
 		invokeRequest.setFunctionName("handleTweetEvent");
 		
 		String p="p";
@@ -71,7 +70,7 @@ public class TestLambda {
 		String s="[{\"name\":\"p\",\"value\":\"88\"},{\"name\":\"d\",\"value\":\"100\"}]";
 		
 		
-		//invokeRequest.setPayload("{\"key1\":\"value100001ooolll\"}");
+		
 		awsLambdaClient.invoke(invokeRequest);
 		System.out.println("Service name" + awsLambdaClient.getServiceName());*/
 
@@ -107,7 +106,7 @@ public class TestLambda {
 
             JSONObject obj2 = new JSONObject();
             obj2.put("name","Pankaj");
-          //  obj2.p
+         
 
             JSONObject obj3 = new JSONObject();
             obj3.put("name","Pankaj");
@@ -160,10 +159,10 @@ public class TestLambda {
             System.exit(-1);
         }
 
-        //if(true){
+        
         if (eventCollection != null) {
-            System.out.println("Events not null");
-            //if(true){
+           
+           
             if (eventCollection.count() > 0) {
 
                 System.out.println("Event Count is.." + eventCollection.count());
@@ -217,9 +216,7 @@ public class TestLambda {
                     System.out.println("Executing Query for tag..." + event.get("_id"));
                     hashtag = event.get("_id").toString();
 
-                     //   System.out.println("Target twitts"+event.getInteger("target_twitts"));
-                       // System.out.println("Tweet Limit is"+event.getInteger("twitt_limit"));
-
+                     
                     List<Status> tweets = new ArrayList<Status>();
                     Query query = new Query(hashtag);
 
@@ -252,7 +249,7 @@ public class TestLambda {
                                     System.out.println("@" + tweet.getUser().getScreenName() + " - "); //+ //tweet.getText());
                                     String tweeter_username = tweet.getUser().getScreenName();
                                     if (users_map.containsKey(tweeter_username)) {
-                                        // if (users.contains(tweeter_username)) {
+                                        
 
                                         System.out.println("_________________________Tweeter" + tweeter_username);
                                         Integer i = (Integer) users_map.get(tweeter_username);
@@ -345,10 +342,10 @@ public class TestLambda {
                     } catch (TwitterException te) {
                         te.printStackTrace();
                         System.out.println("Failed to search tweets: " + te.getMessage());
-                        //System.exit(-1);
+                        
                     }
 
-                    //}
+                   
                 }
                 }
 
