@@ -20,9 +20,6 @@
     <!-- Custom CSS -->
      <link href="../dist/css/tw-admin.css" rel="stylesheet"> 
 
-    <!-- Morris Charts CSS -->
-    <link href="../components/morrisjs/morris.css" rel="stylesheet">
-
     <!-- Custom Fonts -->
     <link href="../components/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     
@@ -99,13 +96,13 @@
 				
 				// alert("tweet alert" + tweetsum);  
 				var message = "Total Count:" + tweetsum;
-				 //$("#totalcount").html("Total Count:" + tweetsum);
+				 //$("#totalcount").html("Total Count:  " + tweetsum);
 				 
 				 var targetteext = $("#limittweet").html();
 				 var target = parseInt($("#limittweet").html());
 				 
 				 if(target==tweetsum){
-				 message=message+" Target Achieved...";
+				 message=message+"        TARGET ACHIEVED !!!";
 				 }
 				 
 				  $("#totalcount").html(message);
@@ -296,22 +293,59 @@
 			
 			
 				<div class="col-lg-6">
-					<div class="panel panel-info">
+					 <div class="panel panel-info">
 				
 				 		<div class="panel-heading">
-                            <i class="fa fa-twitter fa-fw"></i> Responsive Timeline
+				 		<i class="fa fa-twitter fa-fw"></i>
+                            <%=event_name%> 
                         </div>
                         
 					
-						<div class="panel-body">
-						Tweet1
-						<hr>
-						Tweet2
-						<hr>
-						Tweet3
-						<hr>
-						</div>
-					</div>	
+						 <div class="panel-body">
+								
+							<table class="table table-condensed table-striped" >
+										<% events_list.forEach(function(event){ %>
+										<%if(event._id == event_name){%>
+										
+												<tr class="success"> 
+														<th>Event Name</th>
+														<td><%=event.name%></td>
+												</tr>							
+												
+												<tr class="warning"> 
+														<th>Event Email id</th>
+														<td><%=event.email%></td>
+												</tr>							
+												
+												<tr class="danger"> 
+														<th>Event Start Date</th>
+														<td><%=event.startdate%></td>
+												</tr>							
+												
+												<tr class="info"> 
+														<th>Event End Date</th>
+														<td><%=event.enddate%></td>
+												</tr>							
+												
+												<!-- <tr> 
+														<th>Event Status</th>
+														<td>
+														<%if(event.flag == true){%>
+															Event Open
+														<%}else{%>
+															Event Closed	
+														<%}%></td>
+												</tr>	 -->						
+												
+												
+										<%}%>
+										<%});%>
+										
+							</table>
+								
+								
+						</div> 
+					</div>	 
 				</div>
 				
 			</div>
@@ -374,11 +408,6 @@
 
     <!-- Metis Menu Plugin JavaScript -->
     <script src="../components/metisMenu/dist/metisMenu.min.js"></script>
-
-    <!-- Morris Charts JavaScript -->
-    <script src="../components/raphael/raphael-min.js"></script>
-    <script src="../components/morrisjs/morris.min.js"></script>
-    <script src="../js/morris-data.js"></script>
 
     <!-- Custom Theme JavaScript -->
     <script src="../dist/js/admin.js"></script>
